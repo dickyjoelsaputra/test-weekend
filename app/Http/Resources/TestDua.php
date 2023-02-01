@@ -14,11 +14,6 @@ class TestDua extends ResourceCollection
      */
     public function toArray($request)
     {
-        return [
-            'transaction_id' => $this->transaction_id,
-            'transaction_date' => $this->transaction_date,
-            // 'costumers' => $this->costumers,
-            'total_value' => $this->total_value,
-        ];
+        return parent::toArray($request);
     }
 }
