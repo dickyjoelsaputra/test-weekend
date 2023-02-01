@@ -12,7 +12,7 @@ class CostumerController extends Controller
 {
     public function testsatu()
     {
-        $conDave = Costumer::where('first_name', 'LIKE', 'dave')->orWhere('last_name', 'LIKE', 'dave')->get();
+        $conDave = Costumer::where('first_name', 'LIKE', 'dave')->get();
 
         return response()->json(['conDave' => $conDave]);
     }
