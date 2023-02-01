@@ -7,6 +7,7 @@ use App\Models\Costumer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Resources\TestDua;
+use Illuminate\Support\Facades\DB;
 
 class CostumerController extends Controller
 {
@@ -74,16 +75,22 @@ class CostumerController extends Controller
         // ->having('costumer_id', '>', 1)->whereYear('transaction_date', 2016)->whereMonth('transaction_date', 7)
         // ->get();
 
-        // $order = Order::whereYear('transaction_date', 2016)->whereMonth('transaction_date', 7)
-        //     ->groupBy('costumer_id')
-        //     ->having('costumer_id', '>', 1)->get();
+        // $data = Order::whereYear('transaction_date', 2016)->whereMonth('transaction_date', 7)->groupBy('transaction_id')->having('costumer_id', '>', 0)->get();
 
         // $order = Order::withCount(['costumers' => function ($query) {
         //     return $query->whereYear('transaction_date', 2016)->whereMonth('transaction_date', 7);
         // }])->having('costumer_id', '>=', 2);
 
-        $order = Costumer::withCount('orders')->get();
+        $order = DB::table('orders')
+            ->select('costumer_id', DB::raw('count(*) as total'))
+            ->whereYear('transaction_date', 2016)->whereMonth('transaction_date', 7)
+            ->groupBy('costumer_id')
+            ->having('costumer_id', '>', 2)
+            ->get();
 
-        return response()->json($order);
+        // $order = Costumer::withCount('orders')->get();
+
+        // return TestDua::collection($order);
+        return response()->json(['data' => $order]);
     }
 }
