@@ -20,7 +20,7 @@ Route::get('/test3')
 
 Route::get('/test4') 
 
-Route::get('/test5') // gagal
+Route::get('/test5')
 
 Route::post('/testphp1')
 
