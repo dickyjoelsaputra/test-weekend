@@ -24,7 +24,7 @@ Route::get('/test1', [CostumerController::class, 'testsatu']);
 Route::get('/test2', [CostumerController::class, 'testdua']);
 Route::get('/test3', [CostumerController::class, 'testtiga']);
 Route::get('/test4', [CostumerController::class, 'testempat']);
-Route::get('/test5', [CostumerController::class, 'testlima']); // gagal
+Route::get('/test5', [CostumerController::class, 'testlima']);
 
 Route::post('/testphp1', [TestController::class, 'testsatu']);
 Route::post('/testphp2', [TestController::class, 'testdua']);
